@@ -22,7 +22,7 @@ describe('Server Integration', function() {
         });
     });
 
-    describe('POST /api/v1/note => create', () => {
+    describe.only('POST /api/v1/note => create', () => {
       it('should post and create a new record', () => {
         debug('this.resPost.body', this.resPost.body);
         expect(this.resPost.body.subject).toEqual('hello');

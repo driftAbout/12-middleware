@@ -13,9 +13,11 @@ module.exports = function(router) {
   
   router.post('/note', bodyParser, (req, res) => {
     debug('route post');
+    let new_note;
     new Note(req.body.subject, req.body.comment)
+      .then(note => new_note = note )
       .then(note => storage.create('note', note))
-      .then(item => res.status(201).json(item))
+      .then(() => res.status(201).json(new_note))
       .catch( err => errorHandler(err, res));
   });
 
