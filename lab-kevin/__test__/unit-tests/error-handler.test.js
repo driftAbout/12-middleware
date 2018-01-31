@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 const error_handler = require('../../lib/error-handler'); 
 
 describe('Error Handler unit testing', function() {
