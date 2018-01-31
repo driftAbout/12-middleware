@@ -1,0 +1,24 @@
+{
+  "name": "lab-kevin",
+  "version": "1.0.0",
+  "description": "Express Middleware - work with the application, router, and 3rd party middleware through the use of express.js",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "express",
+    "node",
+    "cors",
+    "body-parser",
+    "bluebird",
+    "jest",
+    "unit",
+    "testing"
+  ],
+  "author": "Kevin Miller",
+  "license": "MIT"
+}
