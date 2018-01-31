@@ -17,15 +17,17 @@ require('../route/route-note')(router_notes);
 app.use('/*', (req, res) => errorHandler(new Error('Path error: File not found'), res));
 
 const server = module.exports = {};
-server.isOn = false;
+//server.isOn = false;
 server.http = null;
 
 //server controls
 server.start = (PORT, cb) => {
-  if (server.isOn) return new Error('Server already running');
+  // if (server.isOn) return new Error('Server already running');
+  debug('server - starting');
   server.http = app.listen(PORT, cb);
 };
 server.stop = cb => {
-  if (!server.isOn) return new Error('Server not running');
+  //if (!server.isOn) return new Error('Server not running');
+  debug('server - stopping');
   server.http.close(cb);
 };

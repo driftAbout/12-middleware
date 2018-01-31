@@ -1,5 +1,6 @@
 
 'use strict';
+require('dotenv').config();
 const server = require('./lib/server');
 
 if(process.env.NODE_ENV !== 'production') require('dotenv').config();
