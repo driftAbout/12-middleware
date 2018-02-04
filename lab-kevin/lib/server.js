@@ -19,11 +19,10 @@ app.use('/api/v1/note', router_notes);
 app.use('/+', (req, res) => errorHandler(new Error('Path error: File not found'), res));
 
 const server = module.exports = {};
-server.isOn = false;
+//server.isOn = false;
 server.http = null;
 
 const PORT = process.env.PORT;
-
 
 server.start = () => {
   return new Promise((resolve, reject) => {
@@ -44,4 +43,3 @@ server.stop = () => {
     });
    
   });
-};
