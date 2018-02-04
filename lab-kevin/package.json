@@ -22,6 +22,7 @@
     "testEnvironment": "node",
     "collectCoverage": true,
     "coverageDirectory": "./coverage",
+    "coveragePathIgnorePatterns": ["/__test__/"],
     "coverageThreshold": {
       "global": {
         "branches": 80,

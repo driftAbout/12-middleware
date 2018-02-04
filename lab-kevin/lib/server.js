@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 const errorHandler = require('./error-handler');
 const debug = require('debug')('http:server-module');
+require('dotenv').config();
 
 //app setup
 const app = express();
@@ -20,12 +21,32 @@ const server = module.exports = {};
 server.isOn = false;
 server.http = null;
 
+const PORT = process.env.PORT;
+
 //server controls
-server.start = (PORT, cb) => {
-  if (server.isOn) return new Error('Server already running');
-  server.http = app.listen(PORT, cb);
+// server.start = (PORT, cb) => {
+//   if (server.isOn) return new Error('Server already running');
+//   server.http = app.listen(PORT, cb);
+// };
+// server.stop = cb => {
+//   if (!server.isOn) return new Error('Server not running');
+//   server.http.close(cb);
+// };
+
+server.start = () => {
+  return new Promise((resolve, reject) => {
+    if (server.isOn) return reject(new Error('Server Running'));
+    server.http = app.listen(PORT, () => console.log(`Listening on PORT ${PORT}`));
+    server.isOn = true;
+    return resolve ();
+  });
 };
-server.stop = cb => {
-  if (!server.isOn) return new Error('Server not running');
-  server.http.close(cb);
+
+server.stop = () => {
+  return new Promise((resolve, reject) => {
+    if(!server.isOn) return reject(new Error('Server is stopped'));
+    server.http.close();
+    server.isOn = false;
+    return resolve();
+  });
 };
