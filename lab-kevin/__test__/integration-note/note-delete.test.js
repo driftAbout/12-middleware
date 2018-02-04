@@ -43,4 +43,13 @@ describe('DELETE Integration', function() {
     });
   });
 
+  describe('Valid requests', () => {
+    it('should return status code 404 for deleting a file that does not exist', () => {
+      return superagent.delete(':4000/api/v1/note/23')
+        .catch(err => {
+          expect(err.status).toEqual(404);
+        });
+    });
+  });
+
 });

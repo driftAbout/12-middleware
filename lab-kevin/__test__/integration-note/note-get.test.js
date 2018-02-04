@@ -6,7 +6,7 @@ const superagent = require('superagent');
 require('jest');
 
 describe('GET Integration', function() {
-  beforeAll(() => server.start(process.env.PORT), () => console.log(process.env.PORT));
+  beforeAll(() => server.start());
   afterAll(() => server.stop());
   
   describe('Valid requests', () => {
@@ -56,7 +56,24 @@ describe('GET Integration', function() {
         expect(this.getAll.status).toEqual(200);
       });
     });
-  
-  });
 
+    describe('Inalid requests', () => {
+
+      it('should return a 404 for a missing route', () => {
+        return  superagent.get(':4000/api/v1/not')
+          .catch(err => {
+            expect(err.status).toBe(404);
+          });
+      });
+
+      it('should return a 404 for a bad id', ()=> {
+        return  superagent.get(':4000/api/v1/note/4')
+          .catch(err => {
+            expect(err.status).toBe(404);
+          });
+      });
+    });
+  });
 });
+
+

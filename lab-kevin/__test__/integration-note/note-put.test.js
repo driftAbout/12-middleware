@@ -6,7 +6,7 @@ const superagent = require('superagent');
 require('jest');
 
 describe('PUT Integration', function() {
-  beforeAll(() => server.start(process.env.PORT), () => console.log(process.env.PORT));
+  beforeAll(() => server.start());
   afterAll(() => server.stop());
   
   describe('Valid requests', () => {
@@ -43,7 +43,25 @@ describe('PUT Integration', function() {
       });
     });
 
-  
+  });
+
+  describe('invalid requests', () => {
+    
+    it('should return status code 204 for bad put data', () => {
+      return  superagent.put(`:4000/api/v1/note/${this.resPost.body.id}`)
+        .send({})
+        .then( res => {
+          expect(res.status).toBe(204);
+        });
+    });
+
+    it('should return status code 404 for a bad put route', () => {
+      return  superagent.put(':4000/api/v1/not')
+        .send({subject: 'goodbye', comment: 'Funkn-B'})
+        .catch(err => {
+          expect(err.status).toBe(404);
+        });
+    });
   });
 
 });
