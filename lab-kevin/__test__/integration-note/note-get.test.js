@@ -16,6 +16,7 @@ describe('GET Integration', function() {
         .send({subject: 'hello', comment: 'Funkn-A'})
         .then( res => {
           this.resPost = res;
+          return;
         })
         .catch(err => {
           debug('superagent error ', err);
