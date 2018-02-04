@@ -7,7 +7,6 @@ describe('NOTE unit testing', function() {
   new Note(this.mockItem.subject, this.mockItem.comment)
     .then(item => this.note = item);
   it('should be an object', () => {
-    console.log('note',this.note);
     expect (this.note).toBeInstanceOf(Object);
   });
   it('should have a uuid', () => {
@@ -18,5 +17,22 @@ describe('NOTE unit testing', function() {
   });
   it('should have a comment', () => {
     expect (this.note.comment).not.toBeNull();
+  });
+
+  describe('note errors', () => {
+    it('Sould throw error for missing subject', () => {
+      this.mockItem = {subject: '', comment: 'that'};
+      new Note(this.mockItem.subject, this.mockItem.comment)
+        .catch(err => {
+          expect(err).toMatch(/subject/);
+        });
+    });
+    it('Sould throw error for missing comment', () => {
+      this.mockItem = {subject: 'hello', comment: ''};
+      new Note(this.mockItem.subject, this.mockItem.comment)
+        .catch(err => {
+          expect(err).toMatch(/subject/);
+        });
+    });
   });
 });

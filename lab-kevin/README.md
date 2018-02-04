@@ -1,4 +1,4 @@
-># Lab 11: Express
+># lab 12: Express Middleware
 
 This is a simple  HTTP server created using express.  There are four basic CRUD methods available for interacting with an object with three properties, subject, comment and id. 
 
@@ -23,19 +23,18 @@ This is a simple  HTTP server created using express.  There are four basic CRUD 
 - This project has the following dependencies:
 
 ```JSON
-    "devDependencies": {
-        "debug": "^3.1.0",
-        "dotenv": "^5.0.0",
-        "eslint": "^4.16.0",
-        "jest": "^22.1.4",
-        "superagent": "^3.8.2"
-      },
-      "dependencies": {
-        "bluebird": "^3.5.1",
-        "body-parser": "^1.18.2",
-        "express": "^4.16.2",
-        "uuid": "^3.2.1"
-      }
+"devDependencies": {
+    "dotenv": "^5.0.0",
+    "jest": "^22.1.4",
+    "superagent": "^3.8.2"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "uuid": "^3.2.1"
+  }
 ```
 
 ### npm scripts
@@ -43,12 +42,14 @@ This is a simple  HTTP server created using express.  There are four basic CRUD 
 - The following npm scripts are available:
 
 ```JSON
-    "scripts": {
-      "lint": "eslint .",
-      "test": "jest --verbose -i",
-      "test:debug": "DEBUG=http* jest --verbose -i",
-      "start": "nodemon index.js",
-      "start:debug": "DEBUG=http* nodemon index.js"
+ "scripts": {
+    "lint": "eslint .",
+    "test": "jest -i",
+    "test:watch": "jest -i --watchAll",
+    "test:debug": "DEBUG=http* jest -i",
+    "start:watch": "nodemon index.js",
+    "start:debug": "DEBUG=http* nodemon index.js"
+  }
 ```
 
 #### Run the tests!
