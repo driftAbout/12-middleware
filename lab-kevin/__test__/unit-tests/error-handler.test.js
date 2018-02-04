@@ -2,7 +2,7 @@
 
 const error_handler = require('../../lib/error-handler'); 
 
-describe('Error Handler unit testing', function() {
+describe('Error Handler unit testing', function() {  
   this.validation_err = new Error('Validation error: Cannot create note, subject or comment missing');
   this.path_err = new Error('ENOENT');
   this.misc_err = new Error('Internal Server Error');
