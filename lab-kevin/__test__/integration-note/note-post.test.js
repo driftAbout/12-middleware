@@ -50,4 +50,23 @@ describe('POST Integration', function() {
 
   });
 
+  describe('Inalid requests', () => {
+
+    it('should return a 400 for a post with bad data route', () => {
+      return  superagent.post(':4000/api/v1/note')
+        .send({subject: '', comment: 'Funkn-A'})
+        .catch(err => {
+          expect(err.status).toBe(400);
+        });
+    });
+
+    it('should return a 404 for a bad post route', ()=> {
+      return  superagent.post(':4000/api/v1/no')
+        .send({subject: 'hello', comment: 'Funkn-A'})
+        .catch(err => {
+          expect(err.status).toBe(404);
+        });
+    });
+  });
+
 });

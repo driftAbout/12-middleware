@@ -9,8 +9,7 @@ const debug = require('debug')('http:route-note');
 
 module.exports = function(router) {
   debug('routes');
-  debug('routes2');
-  
+
   router.post('/', bodyParser, (req, res) => {
     debug('route post');
     let new_note;
